@@ -765,3 +765,50 @@ let countSheep = function (num){
   }
   return str;
 }
+
+/* Фибоначчи */
+function fibonShort(num) {
+  let a = 1,
+      b = 1;
+
+  for (let i = 3; i <= num; i++) {
+    let c = a + b; /* 1 + 1 = 2; 1 + 2 = 3 */
+            a = b; /* a = 1; a = 2; a = 3; */
+            b = c; /* b = 2; b = 3; b = 5; */
+  }
+  return b;
+}
+console.log(fibonShort(5))
+
+/* function fibonacci(n) {
+  return (n < 2) ? n : fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(100)) */
+
+function fibonacci(num) {
+
+  const result = [0, 1]; /* 0 1 1 2 3 5 8 13 21 34*/
+
+  for (let i = 2; i <= num; i++) {
+                           /* 13 21 */
+    const prevNum1 = result[i - 1];/* 2 второй по индексу єто 1 + 1 = 2 */
+                           /* 8 13 */
+    const prevNum2 = result[i - 2];/* 1 первый по индексу это 1 */
+    result.push(prevNum1 + prevNum2)  /* слаживаем 1 + 0 = 1 */
+  }
+
+  return result[(num)]
+}
+
+console.log(fibonacci(9))
+
+/* Палиндром */
+const func = (str) => {
+  if (str.split('').reverse('').join('') === str) {
+    console.log(true)
+  } else {
+    console.log(false);
+  }
+}
+console.log(func('aabba')) 
