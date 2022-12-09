@@ -875,3 +875,29 @@ function gimme (triplet) {
   return res
  
   }
+
+/* 
+  You will be given a list of strings. You must sort it alphabetically (case-sensitive, and based on the ASCII values of the chars) and then return the first value.
+
+  The returned value must be a string, and have "***" between each of its letters.
+  
+  You should not remove or add elements from/to the array. */
+
+
+function twoSort(s) {
+ return s.sort()[0].split('').join('***')
+}
+console.log(twoSort(["turns", "out", "random", "test", "cases", "are", "easier", "than", "writing", "out", "basic", "ones"]))
+
+/* Given an array of integers as strings and numbers, return the sum of the array values as if all were numbers.
+
+Return your answer as a number. */
+function sumMix(x){
+  let sum = 0;
+  x.map(function (el) {
+    sum += parseInt(el)
+  })
+  return sum
+
+}
+console.log(sumMix(['3', 6, 6, 0, '5', 8, 5, '6', 2,'0']))
