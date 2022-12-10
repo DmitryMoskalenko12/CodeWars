@@ -901,3 +901,38 @@ function sumMix(x){
 
 }
 console.log(sumMix(['3', 6, 6, 0, '5', 8, 5, '6', 2,'0']))
+
+/* Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+"camelCasing"  =>  "camel Casing"
+"identifier"   =>  "identifier"
+""             =>  "" */
+function solution(string) {
+  let splitStr = string.split("");
+  let newStr = "";
+  splitStr.forEach(e =>{
+      if(e === e.toUpperCase()) newStr +=" "+e;
+      else newStr += e;
+  });
+  return newStr;
+}
+console.log(solution('camelCasingTest'))
+
+/* карірованіе */
+function curry(f) { // curry(f) выполняет каррирование
+  return function(a) {
+    return function(b) {
+      return f(a, b);
+    };
+  };
+}
+
+// использование
+function sum(a, b) {
+  return a + b;
+}
+
+let curriedSum = curry(sum);
+
+console.log( curriedSum('f')(4) );
