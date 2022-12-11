@@ -936,3 +936,7 @@ function sum(a, b) {
 let curriedSum = curry(sum);
 
 console.log( curriedSum('f')(4) );
+
+let hello = new Uint8Array([72, 101, 108, 108, 111]);
+let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
+console.log(blob.slice())
