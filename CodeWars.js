@@ -940,3 +940,14 @@ console.log( curriedSum('f')(4) );
 let hello = new Uint8Array([72, 101, 108, 108, 111]);
 let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
 console.log(blob.slice())
+
+// второй элемент не нужен
+let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert( title ); 
+
+let user = {};
+[user.name, user.surname] = "rty rthuj".split(' ');
+
+console.log(user); 
+console.log(user.surname);
