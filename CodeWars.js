@@ -944,10 +944,41 @@ console.log(blob.slice())
 // второй элемент не нужен
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
-alert( title ); 
+console.log( title ); 
 
 let user = {};
 [user.name, user.surname] = "rty rthuj".split(' ');
 
+let options = {
+  title: "Menu"
+};
+
+let {width: w = 100, height: h = 200, title1} = options;
+
+
+
 console.log(user); 
 console.log(user.surname);
+
+let title2, width, height;
+
+// сейчас всё работает
+({title2, width, height} = {title: "Menu", width: 200, height: 100});
+
+console.log( title );
+
+
+const but = document.querySelector('.mustbedeleted')
+const wrapper = document.querySelector('#test')
+
+but.addEventListener('click', () => {
+  const first = document.createElement('button')
+  first.textContent = 1111
+  wrapper.append(first)
+
+  const second = document.createElement('button')
+  second.textContent = 2222
+  wrapper.append(second)
+  but.remove()
+
+})
