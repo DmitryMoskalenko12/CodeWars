@@ -967,18 +967,20 @@ let title2, width, height;
 
 console.log( title );
 
+// А тепер навчимо наших роботів сортувати коробки на складі. Кожна коробка має свій унікальний номер, а роботи вчаться сортувати в порядку зростання.
 
-const but = document.querySelector('.mustbedeleted')
-const wrapper = document.querySelector('#test')
+// Але сортування — справа нелегка, іноді трапляються помилки. Тому нам поки що доведеться перевіряти, чи правильно робот відсортував коробки.
 
-but.addEventListener('click', () => {
-  const first = document.createElement('button')
-  first.textContent = 1111
-  wrapper.append(first)
+// Для цього напиши функцію isSorted, яка отримує масив чисел boxNumbers і повертає true, якщо всі числа розташовані в порядку зростання, або false — якщо ні.
+function isSorted(boxes) {
+  if (boxes.length === 1 || boxes.length === 0) {
+    return true
+  }
+  for (let i = 1; i <= boxes.length; i++) {
+    if (boxes[i] <= boxes[i + 1]) {
+      return true;
+    }
+    return false;
+  }
+}
 
-  const second = document.createElement('button')
-  second.textContent = 2222
-  wrapper.append(second)
-  but.remove()
-
-})
