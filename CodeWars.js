@@ -1067,3 +1067,47 @@ console.log(addNumbers({
   spam: 10,
   egg: 11,
 }))
+
+
+function countLettersInString(str) {
+  // write code here
+
+  const arr = str.split("")
+  const result = {}
+    arr.forEach((letter) => {
+    result[letter] ? result[letter] += 1 : result[letter] = 1
+  })
+    return result
+
+}
+console.log(countLettersInString('arithmetics'))
+
+
+
+/* Реалізуй функцію sumObjects, яка приймає необмежену кількість об'єктів та повертає об'єкт, який об'єднує всі введені об'єкти.
+
+Примітки:
+
+Усі властивості об'єкта матимуть лише числові значення
+Якщо ключі об'єктів співпадають, значення відповідних ключів сумуються
+Функція завжди повертає об'єкт
+Числа в об'єкті можуть бути додатніми і від'ємними
+Ти можеш скористатися rest оператором, щоб зібрати аргументи передані в функцію в один масив */
+
+const first = {a: 2, b: 4};
+const second = {a: 2, b: 10};
+const third = {d: -5};
+
+function sumObjects(...rest) {
+  // write code here
+const obj = {}
+  rest.forEach((item, i, arr) => {
+   for (let key in item) {
+    if (key === key) {
+      obj[key] ? obj[key]+=item[key] : obj[key] = item[key]
+    }
+   }
+  })
+  return obj
+}
+console.log(sumObjects(first, second))
