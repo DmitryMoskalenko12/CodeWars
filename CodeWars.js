@@ -1111,3 +1111,55 @@ const obj = {}
   return obj
 }
 console.log(sumObjects(first, second))
+
+
+
+
+function checkNumber(number) {
+  // write code here
+  if( number === 0){
+    let arr = []
+    arr.push(false, true, true)
+    return arr
+ }
+  if( number % -2 === 0){
+  let arr = []
+  arr.push(false, true, false)
+  return arr
+  }
+  if (number <= -1) {
+     let arr = []
+     arr.push(false, false, false)
+     return arr
+  }
+  if(number % 2 !== 0) {
+    let arr = []
+    arr.push(true, false, false)
+    return arr
+  } 
+  if(Number.isInteger(number / 10)){
+    let arr = []
+    arr.push(true, true, true)
+    return arr
+ }
+  if(number % 2 === 0) {
+    let arr = []
+    arr.push(true, true, false)
+    return arr
+  } 
+ 
+ 
+}
+console.log(checkNumber(-1))
+
+
+/* А тепер знайдемо суму елементів масивів.
+
+У цьому завданні реалізуй функцію getArraysSum, яка приймає два масиви чисел однакової довжини та повертає суму всіх елементів цих масивів. */
+
+function getArraysSum(arr1, arr2) {
+  // write code here
+  return arr1.length === arr2.length ? arr1.concat(arr2).reduce((cur, sum) => cur + sum, 0) : 0
+}
+
+console.log(getArraysSum([1, 2, 3, 4], [5, 6, 7, 8]))
