@@ -984,3 +984,86 @@ function isSorted(boxes) {
   }
 }
 
+/* Кілька людей стоять поспіль, розділені на дві команди. Перша людина потрапляє до команди 1, друга - до команди 2, третя - до команди 1 і так далі.
+
+Реалізуй функцію getRowWeights, яка приймає масив чисел (ваги людей) та повертає новий масив з двох цілих чисел, де перше - загальна вага команди 1, а друге - загальна вага команди 2.
+
+Примітки:
+
+Розмір масиву не менше 1.
+Усі числа додатні. */
+
+function getRowWeights(people) {
+  // write code here
+  const comand = [0, 0];
+
+  for (let i = 1; i <= people.length; i++) {
+    if (i % 2 !== 0) {
+      comand[0]+=people[i - 1]
+    } else {
+      comand[1]+=people[i - 1]
+    }  
+  }
+  return comand
+}
+console.log(getRowWeights([]))
+
+/* Караул, когось вбили!
+
+Тобі вдалося трохи звузити список підозрюваних у вбивстві, адже, на щастя, ти знаєш, з ким кожен із них бачився у той день.
+
+Реалізуй функцію getKiller, яка приймає об'єкт підозрюваних suspects, де у кожного підозрюваного є список людей, з якими він зустрічався. Цей об'єкт виглядає ось так:
+
+{
+  'James': ['Jacob', 'Bill', 'Lucas'],
+  'Johnny': ['David', 'Kyle', 'Lucas'],
+  'Peter': ['Lucy', 'Kyle']
+}
+
+Окрім списку підозрюваних, функція також приймає масив жертв dead:
+
+['Lucas', 'Bill']
+
+Тобі потрібно вирахувати вбивцю і повернути його ім'я (вбивця завжди працює наодинці). У нашому випадку це James, адже він єдиниий, хто бачив обох вбитих (Lukas і Bill).
+
+Якщо вбивцю не знайдено, то функція нічого не повертає. */
+
+function getKiller(suspects, dead) {
+  // write code here
+
+   for (const key in suspects) {
+    if(dead.every(dead => suspects[key].includes(dead) )){
+      return key
+    } else {
+      return ''
+    }
+    }
+   }
+
+console.log(getKiller({
+  'James': ['Jacob', 'Bill', 'Lucas'],
+  'Johnny': ['David', 'Kyle', 'Lucas'],
+  'Peter': ['Lucy', 'Kyle']
+}, ['Lucas', 'Bill']))
+
+
+
+/* Реалізуй функцію addNumbers, яка приймає об'єкт object та повертає суму усіх числових значень в об'єкті */
+
+function addNumbers(object) {
+  // write code here
+  let sum = 0
+  for (let i in object) {
+    if (typeof object[i] === 'number') {
+       sum+=object[i]
+    }
+  }
+  return sum
+}
+console.log(addNumbers({
+  foo: 'js',
+  bar: 'fe',
+  boo: 3,
+  spam: 10,
+  egg: 11,
+}))
