@@ -1196,3 +1196,34 @@ function isSpecialNumber(n) {
   return res ? 'Special!!' : 'NOT!!'
 }
 console.log(isSpecialNumber(38))
+
+
+/* А тепер перевіримо, чи всі наші числа охайні. Число вважається охайним, якщо кожна його цифра не менша за попередню.
+
+Реалізуй функцію isTidy, яка приймає додатне число та повертає true, якщо воно охайне, інакше — false. */
+
+function isTidy(number) {
+  // write code here
+ let res =  number.toString().split('').some((num, i, arr) => +arr[i] > +arr[i + 1])
+ return res ? false : true
+}
+console.log(isTidy(13579))
+
+
+/* Реалізуй функцію isJumping, яка приймає число та повертає рядок 'JUMPING', якщо кожна цифра в числі відрізняється від сусідньої на 1, а якщо ні — рядок 'NOT JUMPING'. */
+
+function isJumping(number) {
+  // write code here
+  let res = number.toString().split('')
+  if (res.length === 1) {
+    return 'JUMPING'
+  }
+ for(let i = 1; i < res.length; i++){
+     if(Math.abs(res[i] - res[i-1]) !== 1){
+        return 'NOT JUMPING';
+     }
+  }
+  return 'JUMPING';
+
+}
+console.log(isJumping(79))
