@@ -1181,3 +1181,18 @@ function combineArrays(first, second) {
 
 }
 console.log(combineArrays([1, 2, 5], [3, 6, 1]))
+
+/* 
+Створи функцію isSpecialNumber, яка приймає додатне число n і визначає, чи є воно особливим.
+
+Число називається особливим, якщо кожна його цифра не більша ніж 5 (0, 1, 2, 3, 4 або 5).
+
+Функція повинна повернути рядок 'Special!!', якщо число особливе, та 'NOT!!' — якщо ні. */
+
+function isSpecialNumber(n) {
+  // write code here
+  let strNum = n.toString();
+  let res = strNum.split('').every(item =>  Number(item) <= 5 )
+  return res ? 'Special!!' : 'NOT!!'
+}
+console.log(isSpecialNumber(38))
