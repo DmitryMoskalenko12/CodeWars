@@ -1163,3 +1163,21 @@ function getArraysSum(arr1, arr2) {
 }
 
 console.log(getArraysSum([1, 2, 3, 4], [5, 6, 7, 8]))
+
+
+/* Реалізуй функцію combineArrays, яка приймає 2 масиви чисел однакового розміру (first та second) та повертає масив чисел, де result[i] — це сума чисел first[i] та second[i]. */
+
+function combineArrays(first, second) {
+  // write code here
+  const arr = []
+  if (first.length === second.length) {
+    for (let i = 0; i < first.length; i++) {
+    arr.push(first[i] + second[i]) 
+    }
+  } else {
+    return []
+  }
+  return arr
+
+}
+console.log(combineArrays([1, 2, 5], [3, 6, 1]))
