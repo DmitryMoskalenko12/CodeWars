@@ -1283,3 +1283,129 @@ function getLeaders(numbers) {
   return result;
 }
 console.log(getLeaders([1, 2, 3, 4, 0]))
+
+
+/* У цьому завданні тобі потрібно показати юзерам хто з їх друзів онлайн і готовий чатитись! Створи функцію whoIsOnline, яка приймає масив об'єктів friends і визначає хто з них online, offline чи away. Якщо юзер має статус online, але його не було в мережі більш ніж 10 хвилин (lastActivity > 10), то можна вважати, що фактично його статус вже away.
+
+Приклад вхідних даних:
+
+[{
+  username: 'Alice',
+  status: 'online',
+  lastActivity: 10
+}, {
+  username: 'Lucy',
+  status: 'offline',
+  lastActivity: 22
+}, {
+  username: 'Bob',
+  status: 'online',
+  lastActivity: 104
+}]
+
+Результат функції whoIsOnline:
+
+{
+  online: ['Alice'],
+  offline: ['Lucy'],
+  away: ['Bob']
+}
+
+Якщо в чаті немає активних юзерів, то результат має виглядати ось так:
+
+{
+  offline: ['Lucy'],
+  away: ['Bob']
+}
+
+Якщо ваших друзів зовсім немає в чаті, то до функції прийде порожній масив []. У цьому випадку потрібно повернути порожній об'єкт {}.
+ */
+
+function whoIsOnline(friends) {
+
+  let online = [];
+  let offline = [];
+  let away = [];
+
+  if (friends.length === 0) {
+    return {};
+  }
+
+  friends.forEach(item => {
+    if (item.status === 'online' && item.lastActivity > 10) {
+      away.push(item.username);
+    } else if (item.status === 'online' && item.lastActivity <= 10) {
+      online.push(item.username)
+    } else {
+      offline.push(item.username);
+    }
+  });
+   const obj = {
+    online: online,
+    offline: offline,
+    away: away
+   }
+   
+   for (const key in obj) {
+    if (obj[key].length === 0) {
+      delete obj[key]
+    }
+  }
+   
+   return obj;
+  
+}
+console.log(whoIsOnline([{
+  username: 'Alice',
+  status: 'online',
+  lastActivity: 10
+}, {
+  username: 'Lucy',
+  status: 'offline',
+  lastActivity: 10
+}, {
+  username: 'Bob',
+  status: 'online',
+  lastActivity: 8
+}]))
+
+
+/* Реалізуй функцію addNumbers, яка приймає об'єкт object та повертає суму усіх числових значень в об'єкті */
+
+function addNumbers(object) {
+  // write code here
+  let num = 0;
+
+  for (const key in object) {
+    if (typeof object[key] === 'number') {
+      num += object[key];
+    }
+  }
+
+  return num;
+}
+
+console.log(addNumbers({
+  foo: 'js',
+  bar: 'fe',
+  boo: 3,
+  spam: 10,
+  egg: 11,
+}))
+
+/* Напиши функцію countLettersInString, яка приймає рядок str і повертає об'єкт, в якому ключ - літери з str (всі в нижньому регістрі), а значення - кількість цих літер в str.
+
+Наприклад: countLettersInString('arithmetics') => {"a": 1, "c": 1, "e": 1, "h": 1, "i": 2, "m": 1, "r": 1, "s": 1, "t": 2} */
+function countLettersInString(str) {
+  // write code here
+  let obj = {};
+  const arr = str.split('').sort();
+
+  arr.forEach((item, i) => {
+    obj[item] ? obj[item] += 1 : obj[item] = 1; 
+  });
+
+  return obj;
+}
+
+console.log(countLettersInString('arithmetics'))
