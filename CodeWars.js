@@ -1524,3 +1524,379 @@ console.log(mapDatabase([
   ['Mike', 'Anderson'],
   ['Lori IV', 'Pirs'],
 ]))
+
+
+
+/* Привіт! Нам треба якнайшвидше знайти всіх користувачів з короткими іменами (не більше 4 букв) та довгими прізвищами (понад 8 букв).
+
+Створи функцію filterPeople, яка приймає масив people та повертає масив з тими користувачами які відповідають обом критеріям. Радимо скористатися методом filter. */
+
+function filterPeople(people) {
+  // write code here
+  return people.filter(item => item.firstName.length
+   <= 4 && item.lastName.length > 8);
+}
+
+console.log(filterPeople([
+  { firstName: 'Lee', lastName: 'Haverbeke' },
+  { firstName: 'Clara', lastName: 'Aernoudts' },
+  { firstName: 'Jan', lastName: 'Rycke' },
+  { firstName: 'Anna', lastName: 'Bernardus' },
+ ]))
+
+/*  У базі даних кожна людина має свій унікальний ідентифікатор. Напиши функцію getPersonById, яка прийматиме число id, масив people та повертатиме знайдений по ідентифікатору об'єкт. Якщо нічого не знайдено, поверни null. Радимо скористатися методом find для масивів. */
+
+function getPersonById(id, people) {
+  // write code here
+  if (people.find(item => item.id === id)) {
+    return people.find(item => item.id === id);
+  } else {
+    return null;
+  }
+}
+console.log(getPersonById(201, [
+  { id: 114, firstName: 'Clara', lastName: 'Aernoudts' },
+  { id: 118, firstName: 'Jan', lastName: 'Rycke' },
+  { id: 101, firstName: 'Lee', lastName: 'Haverbeke' },
+  { id: 201, firstName: 'Anna', lastName: 'Bernardus' },
+ ]))
+
+/*  Іноді не потрібно отримувати весь об'єкт, достатньо знати його індекс у масиві. Що ж, давай знайдемо індекс першої людини, ім'я якої закінчується на вказану букву.
+
+ Напиши функцію getPersonIndex, яка приймає масив people та літеру nameEndsWith і повертає індекс відповідної людини в масиві або null, якщо нікого не знайдено. Радимо скористатися методом findIndex. */
+
+ const getPersonIndex = (people, nameEndsWith) => {
+  // write code here
+
+  if (people.findIndex(item => item.firstName.endsWith(nameEndsWith)) > -1) {
+    return people.findIndex(item => item.firstName.endsWith(nameEndsWith))
+  } else {
+    return null;
+  }
+};
+console.log(getPersonIndex([
+  { id: 118, firstName: 'Jan', lastName: 'Rycke' },
+  { id: 101, firstName: 'Lee', lastName: 'Haverbeke' },
+  { id: 114, firstName: 'Clara', lastName: 'Aernoudts' },
+  { id: 201, firstName: 'Anna', lastName: 'Bernardus' },
+ ], 'q'))
+
+/*  Тут усе просто. Нам потрібно вивести список найкращих працівників Mate Analytic Centre. Напиши функцію getEmployeesList, яка приймає масив people та повертає відсортований в алфавітному порядку список повних імен працівників. */
+
+ function getEmployeesList(people) {
+  // write code here
+ return people.map(item => `${item.firstName} ${item.lastName}`).sort((a, b) => a.localeCompare(b));
+}
+
+console.log(getEmployeesList([
+  { id: 118, firstName: 'Jan', lastName: 'Rycke' },
+  { id: 101, firstName: 'Lee', lastName: 'Haverbeke' },
+  { id: 114, firstName: 'Clara', lastName: 'Aernoudts' },
+  { id: 201, firstName: 'Anna', lastName: 'Bernardus' },
+  { id: 204, firstName: 'Lieven', lastName: 'Causmaecker' },
+  { id: 205, firstName: 'Maria', lastName: 'Sturm' },
+ ]))
+
+
+ function sortRobotsByVersion(robots) {
+  // write code here
+}
+console.log(sortRobotsByVersion([
+  {name: 'Kobs', ver: 16},
+  {name: 'Lari', ver: 32},
+  {name: 'Lee', ver: 1},
+  {name: 'Robert', ver: 1},
+  {name: 'Viber', ver: 4},
+  {name: 'Colins', ver: 21},
+ ]))
+
+/*  Дані про кожного робота з Mate Robot Factory також зберігаються в Mate Analytic Centre.
+
+ Зараз дані не відсортовані, давай відсортуємо їх в порядку спадання від найновішої версії робота до найстарішої.
+ 
+ Напиши функцію sortRobotsByVersion, яка приймає масив роботів robots та сортує його. Повертати з функції нічого не потрібно. */
+
+
+ function sortRobotsByVersion(robots) {
+  // write code here
+   robots.sort((a, b) => b.ver - a.ver);
+}
+
+console.log(sortRobotsByVersion([
+  {name: 'Kobs', ver: 16},
+  {name: 'Lari', ver: 32},
+  {name: 'Lee', ver: 1},
+  {name: 'Robert', ver: 1},
+  {name: 'Viber', ver: 4},
+  {name: 'Colins', ver: 21},
+ ]))
+
+/*  Створи функцію getAverageAge, яка приймає масив ages та повертає середній вік наших користувачів. Вік округли до найближчого цілого числа.
+
+ Радимо скористатися методом reduce для масивів. */
+
+ function getAverageAge(ages) {
+  // write code here
+  if (ages.length === 0) {
+    return 0;
+  } else {
+    return Math.round(ages.reduce((sum, current) => sum + current, 0)
+     / ages.length);
+  }
+};
+console.log(getAverageAge([18, 14, 22, 34, 43, 18, 20, 34, 24]))
+
+
+function getPeopleNames(people) {
+  // write code here
+  return people.map(item => item.name);
+}
+console.log(getPeopleNames([
+  { name: 'Carolus Haverbeke', sex: 'm', born: 1832, died: 1905, father: 'Carel Haverbeke', mother: 'Maria van Brussel' },
+  { name: 'Emma de Milliano', sex: 'f', born: 1876, died: 1956, father: 'Petrus de Milliano', mother: 'Sophia van Damme' },
+  { name: 'Maria de Rycke', sex: 'f', born: 1683, died: 1724, father: 'Frederik de Rycke', mother: 'Laurentia van Vlaenderen' },
+]))
+
+/* const carolus = {
+  name: 'Carolus Haverbeke',
+  father: 'Carel Haverbeke',
+  mother: 'Maria van Brussel',
+  // ...
+};
+
+const emma = {
+  name: 'Emma de Milliano',
+  father: 'Petrus de Milliano',
+  mother: 'Sophia van Damme'
+  // ...
+};
+
+const maria = {
+  name: 'Maria de Rycke',
+  father: 'Frederik de Rycke',
+  mother: 'Laurentia van Vlaenderen',
+  // ...
+};
+
+const carel = {
+  name: 'Carel Haverbeke',
+  father: 'Pieter Antone Haverbeke',
+  mother: 'Livina Sierens',
+  // ...
+}; */
+/* const people = [carolus, emma, maria, carel]; */
+
+function getChildren(people, person) {
+  // write code here
+  return people.filter(item => person.name === item.mother
+  || person.name === item.father);
+}
+
+
+/* const people = [
+  { name: 'Carolus Haverbeke', sex: 'm', born: 1832, died: 1905, father: 'Carel Haverbeke', mother: 'Maria van Brussel' },
+  { name: 'Emma de Milliano', sex: 'f', born: 1876, died: 1956, father: 'Petrus de Milliano', mother: 'Sophia van Damme' },
+  { name: 'Maria de Rycke', sex: 'f', born: 1683, died: 1724, father: 'Frederik de Rycke', mother: 'Laurentia van Vlaenderen' },
+  { name: 'Carel Haverbeke', sex: 'm', born: 1796, died: 1837, father: 'Pieter Antone Haverbeke', mother: 'Livina Sierens' },
+]; */
+
+const person = people[0];
+
+function getFather(people, person) {
+  // write code here
+  if (people.length === 0 || people.filter(item =>
+    item.name === person.father)[0] === undefined) {
+    return null;
+  }
+
+  return people.filter(item => item.name === person.father)[0];
+}
+
+console.log(getFather([
+  { name: 'Carolus Haverbeke', sex: 'm', born: 1832, died: 1905, father: 'Carel Haverbeke', mother: 'Maria van Brussel' },
+  { name: 'Emma de Milliano', sex: 'f', born: 1876, died: 1956, father: 'Petrus de Milliano', mother: 'Sophia van Damme' },
+  { name: 'Maria de Rycke', sex: 'f', born: 1683, died: 1724, father: 'Frederik de Rycke', mother: 'Laurentia van Vlaenderen' },
+  { name: 'Carel Haverbeke', sex: 'm', born: 1796, died: 1837, father: 'Pieter Antone Haverbeke', mother: 'Livina Sierens' },
+], person))
+
+
+
+
+
+function getWomenDiedBefore1800(people) {
+  // write code here
+
+  return people.filter(item => item.died < 1800 && item.sex === 'f');
+}
+console.log(getWomenDiedBefore1800([
+  {
+    name: 'Maria Sturm',
+    sex: 'f',
+    born: 1835,
+    died: 1917,
+    father: 'Charles Sturm',
+    mother: 'Seraphina Spelier',
+  },
+  {
+    name: 'Jacobus Bernardus van Brussel',
+    sex: 'm',
+    born: 1736,
+    died: 1809,
+    father: 'Jan van Brussel',
+    mother: 'Elisabeth Haverbeke',
+  }
+]))
+
+
+/* Напиши функцію getPeopleLivedMin65Years яка приймає масив об'єктів people і повертає масив людей, які прожили мінімум 65 років.
+
+Функція не повинна змінювати вхідний масив.
+
+Не використовуй цикли for, while і метод forEach! */
+
+function getPeopleLivedMin65Years(people) {
+  // write code here
+  return people.filter(item => item.died - item.born >= 65);
+}
+
+
+/* Напиши функцію createLivedMinFilter, яка приймає невід'ємне ціле число age і повертає функцію-колбек.
+
+Ця функція-колбек потім використовується в методі filter. Метод filter відфільтровує масив об'єктів people і залишає тільки тих людей, хто прожив мінімум age років. */
+
+function createLivedMinFilter(age) {
+  // write code here
+  return function(item, i, arr) {
+    return item.died - item.born >= age;
+  };
+};
+
+
+/* Напиши функцію getPeopleWithLifeDurations, яка приймає масив об'єктів people і повертає копію цього масива. Кожний об'єкт в копії повинен містити властивість lifeDuration з числом, що представляє тривалість життя цієї людини.
+
+Об'єкти у вхідному масиві не повинні змінитися.
+
+Не використовуй цикли for та while і метод forEach! */
+
+function getPeopleWithLifeDurations(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.map(item => {
+    return {
+      ...item,
+      lifeDuration: item.died - item.born,
+    };
+  });
+}
+
+/* Напиши функцію getPeopleWithCentury, яка приймає масив об'єктів people і повертає копію цього масива. Кожний об'єкт в копії повинен містити властивість century з числом, що представляє століття, до якого дожила ця людина.
+
+Об'єкти у вхідному масиві не повинні змінитися.
+
+Не використовуй цикли for, while і метод forEach!
+
+Примітка: 1735 - це 18 століття, 1700 - це 17 століття. */
+
+function getPeopleWithCentury(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.map(item => {
+    return {
+      ...item,
+      century: Math.ceil(item.died / 100),
+    };
+  });
+}
+
+const carolus = { name: 'Carolus Haverbeke', father: 'Carel Haverbeke', mother: 'Maria van Brussel' };
+const emma = { name: 'Emma de Milliano', father: 'Petrus de Milliano', mother: 'Sophia van Damme' };
+const laurentia = { name: 'Laurentia Haverbeke', father: 'Jan Haverbeke', mother: 'Maria de Rycke' };
+const maria = { name: 'Maria de Rycke', father: 'Frederik de Rycke', mother: 'Laurentia van Vlaenderen' };
+const carel = { name: 'Carel Haverbeke', father: 'Pieter Antone Haverbeke', mother: 'Livina Sierens' };
+const elisabeth = { name: 'Elisabeth Haverbeke', father: 'Jan Haverbeke', mother: 'Maria de Rycke' };
+
+const people = [carolus, emma, laurentia, maria, carel, elisabeth];
+
+
+/* Напиши функцію getPeopleWithChildren, яка приймає масив об'єктів people і повертає копію цього масива. Кожний об'єкт в копії повинен містити властивість children з масивом людей, які є дітьми цієї людини.
+
+Об'єкти у вхідному масиві не повинні змінитися.
+
+Не використовуй цикли for, while і метод forEach! */
+
+function getPeopleWithChildren(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.map((item, i, arr) => {
+    return {
+      ...item,
+      children: copy.filter(res => item.name === res.mother
+      || item.name === res.father),
+    };
+  });
+}
+console.log(getPeopleWithChildren(people))
+
+/* Напиши функцію sortByBorn, яка приймає масив об'єктів people і повертає копію цього масива, де люди відсортовані по року народження (від найранішого до найпізнішого).
+
+Функція не повинна змінювати вхідний масив.
+
+Не використовуй цикли for, while і метод forEach! */
+
+function sortByBorn(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.sort((a, b) => a.born - b.born);
+}
+
+/* Напиши функцію sortByName, яка приймає масив об'єктів people і повертає копію цього масива, де люди відсортовані по іменах в алфавітному порядку.
+
+Функція не повинна змінювати вхідний масив.
+
+Не використовуй цикли for, while і метод forEach! */
+
+function sortByName(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/* Напиши функцію sortByLifeDuration, яка приймає масив об'єктів people і повертає копію цього масива, де люди відсортовані за тривалістю життя (від найкоротшої до найдовшої).
+
+Функція не повинна змінювати вхідний масив.
+
+Не використовуй цикли for, while і метод forEach! */
+
+
+function sortByLifeDuration(people) {
+  // write code here
+  const copy = people.slice();
+
+  return copy.sort((a, b) => (a.died - a.born) - (b.died - b.born));
+}
+
+/* Напиши функцію createSorterBy, яка приймає рядок field і повертає функцію-коллбек. Ця функція-коллбек буде застосовуватися з методом sort до масиву об'єктів з однаковими ключами. Об'єкти повинні бути відсортовані за даною властивістю field. */
+
+function createSorterBy(field) {
+  // write code here
+  return function(a, b) {
+    if (field === 'name') {
+      return a.name.localeCompare(b.name);
+    } else if (field === 'born') {
+      return a.born - b.born;
+    } else if (field === 'age') {
+      return a.age - b.age;
+    } else if (field === 'sex') {
+      return a.sex.localeCompare(b.sex);
+    } else if (field === 'died') {
+      return a.died - b.died;
+    } else if (field === 'department') {
+      return a.department.localeCompare(b.department);
+    }
+  };
+}
