@@ -1100,17 +1100,18 @@ const third = {d: -5};
 
 function sumObjects(...rest) {
   // write code here
-const obj = {}
+
+  const obj = {};
+
   rest.forEach((item, i, arr) => {
-   for (let key in item) {
-    if (key === key) {
-      obj[key] ? obj[key]+=item[key] : obj[key] = item[key]
+    for (const key in item) {
+      obj[key] ? obj[key] += item[key] : obj[key] = item[key];
     }
-   }
-  })
-  return obj
+  });
+
+  return obj;
 }
-console.log(sumObjects(first, second))
+console.log(sumObjects(first, second, third))
 
 
 
@@ -1409,3 +1410,39 @@ function countLettersInString(str) {
 }
 
 console.log(countLettersInString('arithmetics'))
+
+
+function countMatchingSocks(colors) {
+  // write code here
+  let sort = colors.sort((a, b) => a - b)
+  let result = 0
+  for (let i = 0; i < colors.length; i++) {
+
+      if (sort[i] === sort[i + 1]) {
+        result++
+        i++
+       }
+      
+   
+  }
+  return result 
+}
+
+console.log(countMatchingSocks([2, 2, 2, 2, 2]))
+
+/* Реалізуй метод find, який повторює функціонал оригінального метода. Всередині методу використовуй this для доступу до поточного масиву.
+
+Користуватися методами масивів у цьому завданні заборонено. Використовуй цикли, доступ по індексу та довжину масиву за потреби. */
+
+numbers.find = function(callback) {
+  // write code here
+  for (let i = 0; i < this.length; i++) {
+    const value = this[i];
+
+    if (callback(value, i, this)) {
+      return this[i];
+    }
+  }
+
+  return undefined;
+};
