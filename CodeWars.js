@@ -1932,3 +1932,95 @@ const removeChip = makeTool('chipVersion');
 
 const robotWithoutWheels = removeWheels(kobi);
 console.log(robotWithoutWheels)
+
+
+/* Речі різного об'єму, ваги та розміру по всьому світу прибувають на зберігання на склади Mate Warehouse Company. Час збирати статистику!
+
+Створи функцію makeWarehouse, яка приймає необов'язковий параметр goods (масив чисел з вагою кожного товару, що вже зберігається на складі) і повертає функцію warehouse.
+
+Якщо викликати warehouse без параметрів, вона поверне об'єкт статистики з полями totalWeight і averageWeight - загальна та середня вага всіх товарів на складі (закруглена до найближчого цілого).
+
+Якщо передати декілька чисел, то warehouse додасть їх до загальної ваги всього, що вже зберігається на складі.
+ */
+function makeWarehouse(goods) {
+  // write code here
+  let obj = {};
+  const arrGoods = [...goods];
+
+  function warehouse(...rest) {
+    const total = arrGoods.reduce((sum, current) => sum + current, 0);
+
+    if (rest.length > 0) {
+      arrGoods.push(...rest);
+
+      obj = {
+        totalWeight: total,
+        averageWeight: Math.round(total / arrGoods.length) || 0,
+      };
+    } else {
+      obj = {
+        totalWeight: total,
+        averageWeight: Math.round(total / arrGoods.length) || 0,
+      };
+    }
+
+    return obj;
+  };
+
+  return warehouse;
+}
+
+const  firstWarehouse = makeWarehouse([10, 20])
+console.log(firstWarehouse()); // { totalWeight: 30, averageWeight: 15 }
+
+console.log(firstWarehouse(10, 20, 30, 40, 10, 10));
+console.log(firstWarehouse(56, 44));
+
+console.log(firstWarehouse());
+
+/* Розвідувальному управлінню SI:7, потрібно безпечно зберігати здобуті дані. Твоє завдання абсолютно засекречене!
+
+Створи функцію makeSecret, яка приймає рядки secret та password і повертає функцію storage з секретом.
+
+при звичайному виклику storage повертає рядок Absolutely not a secret thing
+якщо викликати метод storage.getSecret і передати вірний пароль, то він поверне таємне значення secret
+якщо пароль невірний, то результат буде Wrong password!
+якщо пароль було введено невірно 3 рази поспіль, то метод блокується і всі наступні виклики повертатимуть null (навіть для правильного пароля)
+якщо ДО блокування було введено вірний пароль, то лічильник скидається, і знову є 3 спроби для введення пароля
+Метод storage.setSecret(newSecret, newPassword) дозволяє встановити новий пароль та таємну фразу і скинути лічильник */
+
+function makeSecret(secret, password) {
+  // write code here
+  const storage = () => {
+    return 'Absolutely not a secret thing';
+  };
+  let count = 0;
+  const secret1 = secret;
+  const password1 = password;
+
+  storage.getSecret = (password2) => {
+    if (count === 3) {
+      return null;
+    }
+
+    if (password1 === password2) {
+      count = 0;
+
+      return secret1;
+    } else {
+      count++;
+
+      return 'Wrong password!';
+    } ;
+  };
+
+  storage.setSecret = (newSecret, newPassword) => {
+    count = 0;
+    secret = newSecret;
+    password1 = newPassword
+
+    return newSecret;
+  };
+
+  return storage;
+}
