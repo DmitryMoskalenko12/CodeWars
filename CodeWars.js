@@ -1900,3 +1900,35 @@ function createSorterBy(field) {
     }
   };
 }
+
+/* Металобрухт. Місце, якого бояться всі роботи. Та перед тим як відправити робота в останню путь, з нього виймають корисні деталі. Для кожної деталі потрібен відповідний інструмент.
+
+Напиши функцію makeTool, яка приймає рядок part та повертає функцію — інструмент для видалення деталі part з роботів. Функція інструмент приймає об'єкт robot та повертає його копію, але вже без деталі part. При цьому сам robot не повинен змінюватися. */
+
+function makeTool(part) {
+  // write code here
+  return (object) => {
+
+    const copy = Object.assign({}, object);
+
+    for (const key in copy) {
+      if (key === part) {
+        delete copy[key];
+      }
+    }
+
+    return copy;
+  };
+}
+
+const kobi = {
+  wheels: 10,
+  chipVersion: 11,
+  serialNumber: 100
+};
+
+const removeWheels = makeTool('wheels');
+const removeChip = makeTool('chipVersion');
+
+const robotWithoutWheels = removeWheels(kobi);
+console.log(robotWithoutWheels)
