@@ -2024,3 +2024,378 @@ function makeSecret(secret, password) {
 
   return storage;
 }
+
+/* Реалізуй функцію toArrayOfDigits, яка приймає натуральне число n і повертає масив з його цифр в зворотньому порядку.
+
+Наприклад: для n = 46156 функція має повернути [6, 5, 1, 6, 4].
+
+Елементи масива мають бути числами, а не рядками. */
+
+function toArrayOfDigits(n) {
+  // write code here
+  const arr = n.toString().split('').reverse();
+  const res = [];
+
+  for (const num of arr) {
+    res.push(+num);
+  }
+
+  return res;
+}
+/* 
+Реалізуй функцію countOccurrences, яка приймає 2 аргументи phrase та part і повертає кількість разів, що part з'являється у phrase.
+
+Рядки phrase і part містять виключно маленькі латинські літери. Літери в part не повторюються. */
+
+function countOccurrences(phrase, part) {
+  // write code here
+  let res = phrase.split(part).length - 1
+
+  return res;
+}
+console.log(countOccurrences('azyxxzyzy', 'zy'))
+
+
+function isArrayPretty(numbers) {
+  // write code her
+    // write code here
+    return Boolean(numbers.length) && numbers.every(e => numbers.includes(e - 1)
+    || numbers.includes(e + 1));
+  }
+
+console.log(isArrayPretty([6, 7, 1]))
+
+
+
+/* Реалізуй функцію makeStorage так, щоб працював наступний код:
+
+!!! ВАЖЛИВО: storage має коректно працювати з будь-якими строковими ключами:
+
+const storage = makeStorage();
+
+storage.setValue('name', 'Peter');
+storage.setValue('age', 30);
+
+storage.getValue('name'); // Peter
+storage.getValue('age'); // 30
+
+storage.setValue('age', 31);
+storage.getValue('age'); // 31
+
+storage.getValue('occupation'); // undefined
+
+Зверни увагу, що ключі getValue та setValue також мають корректно додаватися та читатися:
+
+storage.getValue('getValue'); // undefined
+storage.setValue('getValue', 42);
+storage.getValue('getValue'); // 42
+
+storage.setValue('setValue', 'hello');
+storage.setValue('x', 10);
+storage.getValue('x'); // 10
+storage.getValue('setValue'); // 'hello' */
+
+
+function makeStorage() {
+  // write code here
+
+  const storage = () => {
+    return '';
+  };
+
+  const obj = {};
+
+  Object.assign({}, obj);
+
+  storage.setValue = (param1, param2) => {
+    obj[param1] = param2;
+  };
+
+  storage.getValue = (param) => {
+    const key = param;
+
+    return obj[key];
+  };
+
+  return storage;
+};
+
+
+const storage = makeStorage();
+
+storage.setValue('name', 'Peter');
+storage.setValue('age', 30);
+
+console.log(storage.getValue('age'));
+console.log(storage.getValue('namef'));
+
+
+/* Реалізуй функцію getPeopleWithParents, яка приймає масив об'єктів people та повертає новий масив з копіями всіх людей. Якщо у людини в новому масиві є мати, то властивість mother має посилатися на неї, так само для батька.
+
+мати - це людина, ім'я якої співпадає зі значенням властивості mother у дитини, аналогічно батько;
+ВАЖЛИВО! об'єкти початкового масиву people НЕ повинні змінюватися;
+Якщо мати знайдена, то властивість mother має посилатися на об'єкт з нового масиву (не зі старого);
+Якщо батька чи матері немає в новому масиві, поля father і mother мають зберегти старі значення. */
+
+
+function getPeopleWithParents(people) {
+
+  const newArr = people.map(item => Object.assign({}, item));
+
+  for (let i = 0; i < people.length; i++) {
+    for (let j = 0; j < people.length; j++) {
+      if (newArr[i].mother === newArr[j].name) {
+        newArr[i].mother = newArr[j];
+      } else if (newArr[i].father === newArr[j].name) {
+        newArr[i].father = newArr[j];
+      }
+    }
+  }
+
+  return newArr;
+}
+
+
+const peoplee = [
+  {
+    'name': 'Carolus Haverbeke',
+    'sex': 'm',
+    'born': 1832,
+    'died': 1905,
+    'father': 'Carel Haverbeke',
+    'mother': 'Maria van Brussel',
+  },
+  {
+    'name': 'Emma de Milliano',
+    'sex': 'f',
+    'born': 1876,
+    'died': 1956,
+    'father': 'Petrus de Milliano',
+    'mother': 'Sophia van Damme',
+  },
+  {
+    'name': 'Maria de Rycke',
+    'sex': 'f',
+    'born': 1683,
+    'died': 1724,
+    'father': 'Frederik de Rycke',
+    'mother': 'Laurentia van Vlaenderen',
+  },
+  {
+    'name': 'Jan van Brussel',
+    'sex': 'm',
+    'born': 1714,
+    'died': 1748,
+    'father': 'Jacobus van Brussel',
+    'mother': 'Joanna van Rooten',
+  },
+  {
+    'name': 'Philibert Haverbeke',
+    'sex': 'm',
+    'born': 1907,
+    'died': 1997,
+    'father': 'Emile Haverbeke',
+    'mother': 'Emma de Milliano',
+  },
+  {
+    'name': 'Jan Frans van Brussel',
+    'sex': 'm',
+    'born': 1761,
+    'died': 1833,
+    'father': 'Jacobus Bernardus van Brussel',
+    'mother': null,
+  },
+  {
+    'name': 'Pauwels van Haverbeke',
+    'sex': 'm',
+    'born': 1535,
+    'died': 1582,
+    'father': 'N. van Haverbeke',
+    'mother': null,
+  },
+  {
+    'name': 'Clara Aernoudts',
+    'sex': 'f',
+    'born': 1918,
+    'died': 2012,
+    'father': 'Henry Aernoudts',
+    'mother': 'Sidonie Coene',
+  },
+  {
+    'name': 'Emile Haverbeke',
+    'sex': 'm',
+    'born': 1877,
+    'died': 1968,
+    'father': 'Carolus Haverbeke',
+    'mother': 'Maria Sturm',
+  },
+]
+
+const peopleWithParents = getPeopleWithParents(peoplee);
+console.log(peopleWithParents)
+
+
+function createIsMyParentFilter(name) {
+  // write code here
+  let personeObject = {};
+
+  return function(isOurParent, id, array) {
+    personeObject = array.filter(_persone => _persone.name === name)[0];
+
+    if (personeObject) {
+      return isOurParent.name === personeObject.mother
+        || isOurParent.name === personeObject.father;
+    } else {
+      return false;
+    }
+  };
+}
+
+
+const callback = createIsMyParentFilter('Carolus Haverbeke');
+const peoples = [
+  {
+    'name': 'Carolus Haverbeke',
+    'sex': 'm',
+    'born': 1832,
+    'died': 1905,
+    'father': 'Carel Haverbeke',
+    'mother': 'Maria van Brussel',
+  },
+  {
+    'name': 'Emma de Milliano',
+    'sex': 'f',
+    'born': 1876,
+    'died': 1956,
+    'father': 'Petrus de Milliano',
+    'mother': 'Sophia van Damme',
+  },
+
+]
+const parents = peoples.filter(callback);
+console.log(parents)
+
+
+
+
+
+const mainCore = {
+  getMainInfo() {
+    // write code here
+    return `Robot %${this.name}%, cpu version %${this.cpuVersion}%`;
+  },
+  getAdditionalInfo() {
+    // write code here
+    return `Update version: %${this.softwareVersion}%`;
+  },
+  updateRobot(updateVersion) {
+    // write code here
+    
+    return `${this.name} updated to ${this.softwareVersion = updateVersion}`;
+  },
+};
+
+const navigationCore = {
+  // write code here
+  getCoords() {
+    return `x=%${this.coords.x}% y=%${this.coords.y}%`;
+  },
+  setTargetCoords(x, y) {
+    this.target.coords = {
+      x: x,
+      y: y,
+    };
+  },
+};
+
+Object.setPrototypeOf(navigationCore, mainCore);
+
+const movementCore = {
+  // write code here
+  moveForward(step = 1) {
+    this.coords.y = step;
+  },
+  moveBack(step = 1) {
+    this.coords.y = step;
+  },
+  moveLeft(step = 1) {
+    this.coords.x = step;
+  },
+  moveRight(step = 1) {
+    this.coords.x = step;
+  },
+};
+
+Object.setPrototypeOf(movementCore, navigationCore);
+
+const kerbin = {
+  name: 'Kerbin',
+  cpuVersion: 145.4,
+  softwareVersion: 23.45,
+  coords: {
+    x: 0,
+    y: 0,
+  },
+  target: {
+    coords: {
+      x: 0,
+      y: 0,
+    },
+  },
+
+};
+
+Object.setPrototypeOf(kerbin, movementCore);
+
+
+console.log(kerbin.moveBack(10))
+console.log(kerbin)
+
+/* Цей розділ буде присвячено розширенню стандартних прототипів методами, які тобі можуть в майбутньому знадобитися, та створенню власних конструкторів.
+
+Буває, що об'єкт, з яким ми працюємо, несе в собі надлишкову інформацію. Нам потрібно отримати його копію, але без надлишкових ключів. Додай до прототипу об'єктів метод omit, який приймає масив ключів та повертає новий об'єкт без вказаних ключів.
+
+Приклад:
+
+const robot = {
+  wheels: 4,
+  name: 'roberto',
+  serialNumber: 123,
+  coords: {
+    x: 0,
+    y: 0,
+  },
+  weight: 40,
+}
+
+robot.omit(['coords', 'wheels', 'weight']) === {
+  name: 'roberto',
+  serialNumber: 123,
+} */
+
+Object.prototype.omit = function omit(keys) {
+  // write code here
+  const obj = { ...this };
+
+  const allValue = Object.keys(obj);
+    for (let i = 0; i < allValue.length; i++) {
+     if (allValue[i] === keys[i]) {
+      delete obj[allValue[i]]
+     }
+    }
+
+  return obj;
+};
+
+const robot = {
+  wheels: 4,
+  name: 'roberto',
+  serialNumber: 123,
+  coords: {
+    x: 0,
+    y: 0,
+  },
+  weight: 40,
+}
+
+console.log(robot.omit(['coords', 'wheels', 'weight']))
