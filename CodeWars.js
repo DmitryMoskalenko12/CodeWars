@@ -2399,3 +2399,227 @@ const robot = {
 }
 
 console.log(robot.omit(['coords', 'wheels', 'weight']))
+
+/* Додай всім масивам метод groupBy, який приймає callback, запускає його для кожного елемента масиву і повертає об'єкт, ключами якого є результати callback, а значеннями - масиви елементів, для яких callback повернув такий результат.
+
+Якщо callback не передано, то використай функцію x => x */
+
+Array.prototype.groupBy = function(callback) {
+  const result = {};
+
+  for (const item of this) {
+    // the key is a callback result or the item itself
+    const key = callback ? callback(item) : item;
+
+    // We check if result has a key
+    if (!result[key]) {
+      // If not we add an array to save items to
+      result[key] = [];
+    }
+
+    // and push items there
+    result[key].push(item);
+  }
+
+  return result;
+};
+const words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];
+
+// Групуємо слова за довжиною
+const grouppedWords = words.groupBy(word => word.length);
+
+console.log(grouppedWords)
+
+const bob = { type: 'cleaner', name: 'bob' };
+const paul = { type: 'cargo', name: 'paul' };
+const robert = { type: 'cleaner', name: 'robert' };
+
+const robots = [bob, paul, robert];
+
+// Групуємо роботів за типом
+const groupedRobots = robots.groupBy(robot => robot.type)
+
+console.log(groupedRobots)
+
+
+/* Конструкторське бюро Mate Robot Factory знайшло можливість ще більше спростити виробництво роботів використовуючи функції-конструктори.
+
+Напиши конструктор Robot, який прийме name та створить робота зі вказаним ім'ям і нульовими координатами. Всім роботам мають бути доступні методи прототипа goForward, goBack, goLeft, goRight, які переміщують робота на 1 у відповідному напрямку. */
+
+
+function Robot(name) {
+  // write code here
+  this.name = name;
+
+  this.coords = {
+    x: 0,
+    y: 0,
+  };
+}
+
+Robot.prototype.goForward = function() {
+  this.coords.y += 1;
+};
+
+Robot.prototype.goRight = function() {
+  this.coords.x += 1;
+};
+
+Robot.prototype.goLeft = function() {
+  this.coords.x -= 1;
+};
+
+Robot.prototype.goBack = function() {
+  this.coords.y -= 1;
+};
+
+
+/* Завдяки наслідуванню, ми можемо значно спростити виробництво різних типів роботів. Тому ми вирішили взяти конструктор з завдання Robot constructor за основу, змінивши назву на BaseRobot, і виготовляти інші різновиди.
+
+Створи конструктор CargoRobot, який викликатиме всередині конструктор BaseRobot і додаватиме роботам нові поля: багажне відділення trunk і кількість місць у ньому maxTrunkCapacity. Крім того, їм мають бути доступні усі методи базових роботів, що зберігаються в BaseRobot.prototype (успадкуй його). */
+
+function BaseRobot(name) {
+  // write code here
+  this.name = name;
+
+  this.coords = {
+    x: 0,
+    y: 0,
+  };
+}
+
+BaseRobot.prototype.goForward = function() {
+  this.coords.y += 1;
+};
+
+BaseRobot.prototype.goRight = function() {
+  this.coords.x += 1;
+};
+
+BaseRobot.prototype.goLeft = function() {
+  this.coords.x -= 1;
+};
+
+BaseRobot.prototype.goBack = function() {
+  this.coords.y -= 1;
+};
+
+/**
+ * @param {string} name
+ * @param {number} maxTrunkCapacity
+ *
+ * @type { Robot } CargoRobot {
+ *   trunk: {Array}
+ *   maxTrunkCapacity: {number}
+ * }
+ *
+ * @returns {CargoRobot}
+ */
+function CargoRobot(name, maxTrunkCapacity) {
+  // keep this line to call BaseRobot constructor for each new CargoRobot
+  this.trunk = [];
+  this.maxTrunkCapacity = maxTrunkCapacity;
+  BaseRobot.call(this, name);
+
+  // write code here
+}
+
+Object.setPrototypeOf(CargoRobot.prototype, BaseRobot.prototype);
+// don't forget to inherit BaseRobot.prototype for CargoRobot.prototype
+// write code here
+
+
+
+String.prototype.truncate = function(options = {}) {
+  // write code here
+  const { length = 30, omission = '...', separator = '' } = options;
+  const truncString = this.slice(0, length);
+  const findTrucIndex = truncString.lastIndexOf(separator);
+  let newString = '';
+
+  if (truncString.slice(0, findTrucIndex - omission.length < 0)) {
+    return omission;
+  }
+
+  if (this.length <= length) {
+    newString += this;
+  } else if (this.length >= length && separator) {
+    newString += truncString.slice(0, findTrucIndex) + omission;
+  } else if (this.length >= length) {
+    newString += this.slice(0, length - omission.length)
+       + omission;
+  } 
+
+  return newString;
+};
+
+
+  const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna'
+console.log(text.truncate({  length: 20, omission: ' more...'}))
+
+
+
+
+/*const { length = 30, omission = '...', separator = '' } = options;
+  const truncString = this.slice(0, length);
+  const findTrucIndex = truncString.lastIndexOf(separator);
+  let newString = '';
+
+  if (truncString.slice(0, findTrucIndex - omission.length < 0)) {
+    return omission;
+  }
+
+  if (this.length <= length) {
+    newString += this;
+  } else if (this.length >= length && separator) {
+    newString += truncString.slice(0, findTrucIndex) + omission;
+  } else if (this.length >= length) {
+    newString += this.slice(0, length - omission.length)
+       + omission;
+  } 
+
+  return newString; */
+/* 
+  Останній банкір Mate Bank звільнився. Все ж таки вести облікові записи клієнтів в зошитах, це було не дуже хорошою ідеєю. Потрібно терміново написати програмне забезпечення для банку, щоб ми могли відмовитися від зошитів, та перейти на електронний облік.
+
+  Створи клас BankAccount, конструктор якого приймає наступні початкові дані: ім'я клієнта name та початковий баланс банківського рахунку money. Також в класі мають бути наступні методи:
+  
+  getInfo - повертає рядок з інформацією про клієнта в форматі з прикладу.
+  addMoney - приймає суму amount, на яку потрібно збільшити баланс, та рядок info про операцію
+  withdrawMoney - приймає суму amount, на яку потрібно зменшити баланс, та рядок info про операцію
+  getAccountHistory - повертає історію операцій по рахунку. */
+
+  class BankAccount {
+    /**
+     * @param {string} name
+     * @param {number} money
+     */
+    constructor(name, money) {
+      // write code here
+      this.name = name;
+      this.money = money;
+      this.history = [`Initial: ${this.money}`];
+    }
+  
+    getInfo() {
+      return `Name: ${this.name}, Amount: ${this.money}`;
+    }
+  
+    addMoney(amount, info) {
+      this.salary = amount;
+      this.money = this.salary + this.money;
+      this.info = `${info}: ${this.salary}`;
+      this.history.push(this.info);
+    }
+  
+    withdrawMoney(amountminus, info) {
+      this.amountminus = amountminus;
+      this.money = this.money - this.amountminus;
+      this.info = `${info}: ${-this.amountminus}`;
+      this.history.push(this.info);
+    }
+  
+    getAccountHistory() {
+      return this.history;
+    }
+  }
