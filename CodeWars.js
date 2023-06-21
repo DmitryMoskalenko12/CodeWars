@@ -2725,3 +2725,62 @@ function shortcut (string) {
   return res.join('');
 }
 console.log(shortcut('never'))
+
+/* You need to write a function that reverses the words in a given string. A word can also fit an empty string. If this is not clear enough, here are some examples:
+
+As the input may have trailing spaces, you will also need to ignore unneccesary whitespace.
+
+Example (Input --> Output)
+
+"Hello World" --> "World Hello"
+"Hi There." --> "There. Hi" */
+
+function reverse(string){
+  const res = string.split(' ').reverse();
+  return res.join(' ');
+}
+console.log(reverse('Hello world'))
+
+/* Issue
+Looks like some hoodlum plumber and his brother has been running around and damaging your stages again.
+
+The pipes connecting your level's stages together need to be fixed before you receive any more complaints.
+
+Pipes list is correct when each pipe after the first index is greater (+1) than the previous one, and that there is no duplicates.
+
+Task
+Given the a list of numbers, return a fixed list so that the values increment by 1 for each index from the minimum value up to the maximum value (both included).
+
+Example
+Input:  1,3,5,6,7,8 Output: 1,2,3,4,5,6,7,8 */
+
+function pipeFix(numbers){
+  let res = [];
+ for (let i = numbers.at(0); i <= numbers.at(-1); i++) {
+  res.push(i)
+ }
+ return res
+  }
+  console.log(pipeFix([-1, 2, 12]))
+
+/* 
+  Given a set of numbers, return the additive inverse of each. Each positive becomes negatives, and the negatives become positives. 
+  invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+  invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+  invert([]) == []
+  You can assume that all values are integers. Do not mutate the input array/list.*/
+
+  function invert(array) {
+    let newArr = []
+  for (let i = 0; i < array.length; i++) {
+    if(array[i] < 0){
+    newArr.push(-array[i])
+    }
+    if (array[i] >= 0) {
+      newArr.push(-array[i])
+    }
+    
+  }
+  return newArr
+  }
+  console.log(invert([1,-2,3,4,5]))
