@@ -2784,3 +2784,106 @@ function pipeFix(numbers){
   return newArr
   }
   console.log(invert([1,-2,3,4,5]))
+
+/*   Create a combat function that takes the player's current health and the amount of damage recieved, and returns the player's new health. Health can't be less than 0. */
+
+  function combat(health, damage) {
+     const res = (health - damage) < 0 ? 0 : health - damage
+     return res
+  }
+  console.log(combat(100, 30))
+
+ /*  Kids drink toddy.
+  Teens drink coke.
+  Young adults drink beer.
+  Adults drink whisky.
+  Make a function that receive age, and return what they drink.
+  
+  Rules:
+  
+  Children under 14 old.
+  Teens under 18 old.
+  Young under 21 old.
+  Adults have 21 or more.
+  Examples: (Input --> Output)
+  
+  13 --> "drink toddy"
+  17 --> "drink coke"
+  18 --> "drink beer"
+  20 --> "drink beer"
+  30 --> "drink whisky" */
+
+  function peopleWithAgeDrink(old) {
+    if(old < 14){
+    return "drink toddy"
+    }
+    else if(old >= 14 && old < 18){
+      return "drink coke";
+    }
+    else if(old >= 18 && old < 21){
+      return "drink beer";
+    }
+      else if(old >= 21){
+      return "drink whisky";
+      }
+  };
+  console.log(peopleWithAgeDrink(15))
+
+ /*  Is the string uppercase?
+Task
+Create a method to see whether the string is ALL CAPS.
+
+Examples (input -> output)
+"c" -> False
+"C" -> True
+"hello I AM DONALD" -> False
+"HELLO I AM DONALD" -> True
+"ACSKLDFJSgSKLDFJSKLDFJ" -> False
+"ACSKLDFJSGSKLDFJSKLDFJ" -> True
+In this Kata, a string is said to be in ALL CAPS whenever it does not contain any lowercase letter so any string containing no letters at all is trivially considered to be in ALL CAPS. */
+
+String.prototype.isUpperCase = function() {
+return String(this) === String(this).toUpperCase()
+}
+console.log('CUOo'.isUpperCase())
+
+/* Task
+You need to return a string that looks like a diamond shape when printed on the screen, using asterisk (*) characters. Trailing spaces should be removed, and every line must be terminated with a newline character (\n).
+
+Return null/nil/None/... if the input is an even number or negative, as it is not possible to print a diamond of even or negative size.
+
+Examples
+A size 3 diamond:
+
+ *
+***
+ *
+...which would appear as a string of " *\n***\n *\n"
+
+A size 5 diamond:
+
+  *
+ ***
+*****
+ ***
+  *
+...that is:
+
+"  *\n ***\n*****\n ***\n  *\n" */
+
+function diamond(n){
+if(n % 2 === 0 || n < 1) {
+ return null;
+}
+
+const middle = Math.floor(n / 2);
+let res = '';
+for (let i = 0; i < n; i++) {
+  const spaces = Math.abs(middle - i);
+  const asterics = n - spaces * 2;
+  res+= ' '.repeat(spaces) + '*'.repeat(asterics) + '\n';
+  
+}
+return res
+}
+console.log(diamond(5))
