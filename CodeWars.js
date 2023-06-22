@@ -2990,3 +2990,51 @@ function sumArray(array) {
   return array.reduce((cur, sum) => cur + sum) - max - min;
 }
 console.log(sumArray([  -6, 20, -1, 10, -12 ]))
+
+/* Task
+Given an array of integers, remove the smallest value. Do not mutate the original array/list. If there are multiple elements with the same value, remove the one with a lower index. If you get an empty array/list, return an empty array/list.
+
+Don't change the order of the elements that are left.
+
+Examples
+* Input: [1,2,3,4,5], output = [2,3,4,5]
+* Input: [5,3,2,1,4], output = [5,3,2,4]
+* Input: [2,2,1,2,1], output = [2,2,2,1] */
+
+function removeSmallest(numbers) {
+  if (numbers.length === 0) {
+    return [];
+  }
+  const smallestIndex = numbers.indexOf(Math.min(...numbers));
+  console.log(smallestIndex)
+  const result = numbers.slice(0, smallestIndex).concat(numbers.slice(smallestIndex + 1));
+
+  return result;
+}
+console.log(removeSmallest([2,2,1,2,1]))
+
+/* Write a function named setAlarm/set_alarm/set-alarm/setalarm (depending on language) which receives two parameters. The first parameter, employed, is true whenever you are employed and the second parameter, vacation is true whenever you are on vacation.
+
+The function should return true if you are employed and not on vacation (because these are the circumstances under which you need to set an alarm). It should return false otherwise. Examples:
+
+employed | vacation 
+true     | true     => false
+true     | false    => true
+false    | true     => false
+false    | false    => false */
+
+function setAlarm(employed, vacation){
+  if(employed && vacation) {
+    return false
+  } 
+  if(!employed && !vacation) {
+    return false
+  } 
+  if((employed === false) && vacation) {
+    return false
+  }
+  if(employed && (vacation === false)) {
+    return true
+  }
+}
+console.log(setAlarm(false, false))
