@@ -2917,3 +2917,76 @@ function persistence(num) {
    
 }
 console.log(persistence(999))
+
+
+/* Description:
+Remove an exclamation mark from the end of a string. For a beginner kata, you can assume that the input data is always a string, no need to verify it.
+
+Examples
+remove("Hi!") == "Hi"
+remove("Hi!!!") == "Hi!!"
+remove("!Hi") == "!Hi"
+remove("!Hi!") == "!Hi"
+remove("Hi! Hi!") == "Hi! Hi"
+remove("Hi") == "Hi" */
+
+function remove (string) {
+  if (string.at(-1) === '!') {
+    return string.slice(0, -1)
+  } else {
+    return string
+  }
+}
+console.log(remove("Hi"))
+
+/* Build a function that returns an array of integers from n to 1 where n>0.
+
+Example : n=5 --> [5,4,3,2,1] */
+
+const reverseSeq = n => {
+   let arr = []
+  for (let i = 1; i <= n; i++) {
+    arr.push(i)
+  }
+  return arr.reverse()
+};
+console.log(reverseSeq(5))
+
+/* Implement the function unique_in_order which takes as argument a sequence and returns a list of items without any elements with the same value next to each other and preserving the original order of elements.
+
+For example:
+
+uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+uniqueInOrder('ABBCcAD')         == ['A', 'B', 'C', 'c', 'A', 'D']
+uniqueInOrder([1,2,2,3,3])       == [1,2,3] */
+
+var uniqueInOrder=function(iterable){
+  if (!Array.isArray(iterable)) {
+    iterable = iterable.split(''); 
+  }
+  
+  return iterable.filter((value, index) => value !== iterable[index - 1]);
+}
+console.log(uniqueInOrder('AAAABBBCCDAABBB'))
+
+
+/* Task
+Sum all the numbers of a given array ( cq. list ), except the highest and the lowest element ( by value, not by index! ).
+
+The highest or lowest element respectively is a single element at each edge, even if there are more than one with the same value.
+
+Mind the input validation.
+
+Example
+{ 6, 2, 1, 8, 10 } => 16
+{ 1, 1, 11, 2, 3 } => 6
+Input validation
+If an empty value ( null, None, Nothing etc. ) is given instead of an array, or the given array is an empty list or a list with only 1 element, return 0. */
+
+function sumArray(array) {
+
+  const max =  Math.max(...array);
+  const min =  Math.min(...array);
+  return array.reduce((cur, sum) => cur + sum) - max - min;
+}
+console.log(sumArray([  -6, 20, -1, 10, -12 ]))
