@@ -3038,3 +3038,93 @@ function setAlarm(employed, vacation){
   }
 }
 console.log(setAlarm(false, false))
+
+
+/* DESCRIPTION:
+Americans are odd people: in their buildings, the first floor is actually the ground floor and there is no 13th floor (due to superstition).
+
+Write a function that given a floor in the american system returns the floor in the european system.
+
+With the 1st floor being replaced by the ground floor and the 13th floor being removed, the numbers move down to take their place. In case of above 13, they move down by two because there are two omitted numbers below them.
+
+Basements (negatives) stay the same as the universal level.
+
+More information here
+
+Examples
+1  =>  0 
+0  =>  0
+5  =>  4
+15  =>  13
+-3  =>  -3 */
+
+function getRealFloor(n) {
+  if (n <= 0) {
+    return n
+  }
+  if (n < 13 && n > 0) {
+    return n - 1
+  }
+  if (n >= 13) {
+    return n - 2
+  }
+}
+
+console.log(getRealFloor(13))
+
+/* Define a method hello that returns "Hello, Name!" to a given name, or says Hello, World! if name is not given (or passed as an empty String).
+
+Assuming that name is a String and it checks for user typos to return a name with a first capital letter (Xxxx).
+
+Examples:
+
+* With `name` = "john"  => return "Hello, John!"
+* With `name` = "aliCE" => return "Hello, Alice!"
+* With `name` not given 
+  or `name` = ""        => return "Hello, World!" */
+
+  function hello(name) {
+    if (name === undefined || name.length === 0) {
+      return 'Hello, World!'
+    }
+
+     const nameLower = name.toLowerCase()
+     const bigFirst = name[0].toUpperCase();
+     const res = `Hello, ${bigFirst}${nameLower.slice(1)}!`
+     return res
+  }
+  console.log(hello())
+
+ /*  You are given two sorted arrays that both only contain integers. Your task is to find a way to merge them into a single one, sorted in asc order. Complete the function mergeArrays(arr1, arr2), where arr1 and arr2 are the original sorted arrays.
+
+You don't need to worry about validation, since arr1 and arr2 must be arrays with 0 or more Integers. If both arr1 and arr2 are empty, then just return an empty array.
+
+Note: arr1 and arr2 may be sorted in different orders. Also arr1 and arr2 may have same integers. Remove duplicated in the returned result.
+
+Examples (input -> output)
+* [1, 2, 3, 4, 5], [6, 7, 8, 9, 10] -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+* [1, 3, 5, 7, 9], [10, 8, 6, 4, 2] -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+* [1, 3, 5, 7, 9, 11, 12], [1, 2, 3, 4, 5, 10, 12] -> [1, 2,  */
+
+function mergeArrays(arr1, arr2) {
+  const concatArray = Array.from(new Set(arr1.concat(arr2)));
+  return concatArray.sort((a, b) => a - b)
+}
+
+console.log(mergeArrays([1, 3, 5, 7, 9, 11, 12], [1, 2, 3, 4, 5, 10, 12]))
+
+
+/* Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+For example, the score of abad is 8 (1 + 2 + 1 + 4).
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid. */
+
